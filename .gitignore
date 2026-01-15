@@ -1,0 +1,22 @@
+# --- Python Core ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Environments ---
+env/
+venv/
+.venv/
+.venv*/
+.venv39/
+
+
+# --- Mac OS Junk ---
+.DS_Store
+
+# --- IDE Settings (Optional but recommended) ---
+.vscode/
+.idea/
+
+# --- Secrets (Safety First) ---
+.env
