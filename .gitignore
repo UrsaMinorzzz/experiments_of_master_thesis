@@ -9,6 +9,7 @@ venv/
 .venv/
 .venv*/
 .venv39/
+__pycache__/
 
 
 # --- Mac OS Junk ---
