@@ -9,10 +9,12 @@ class BudgetAwareSelector:
     - Optimized for Dense Retrieval interactions.
     """
     
-    def __init__(self, alpha: float = 1.0, beta: float = 1.0, token_budget: int = 2048):
+    def __init__(self, alpha: float = 1.0, beta: float = 1.0, token_budget: int = 2048, gamma_static: float = 0.5, if_static_mmr: bool = False):
         self.alpha = alpha
         self.beta = beta
         self.budget = token_budget
+        self.gamma_static = gamma_static
+        self.if_static_mmr = if_static_mmr
 
     def select(self, 
                query_context: str, 
@@ -26,9 +28,12 @@ class BudgetAwareSelector:
         
         # Tokenize candidates once for Jaccard
         candidate_sets = [self._tokenize_to_set(c['code']) for c in candidates]
-        
-        # Calculate Adaptive Gamma based on Raw Stats
-        gamma = self._calculate_adaptive_gamma(scores, candidate_sets)
+
+        #[修改点 1: 判定是否使用静态 Gamma]
+        if self.if_static_mmr:
+            gamma = self.gamma_static
+        else:
+            gamma = self._calculate_adaptive_gamma(scores, candidate_sets)
         
         # Structure (Currently placeholder 1.0)
         structure_scores = [self._evaluate_structure(c['code']) for c in candidates]
@@ -86,8 +91,17 @@ class BudgetAwareSelector:
             # [Gatekeeper Logic]
             # 如果最佳增益为负（说明冗余惩罚超过了相关性收益），立即停止。
             # 这是 "宁缺毋滥" 的核心机制。
-            if best_gain <= 0:
-                break
+            
+            #[修改点 2: 熔断机制 (Gatekeeper Logic) 路由]
+            if not self.if_static_mmr:
+                # Ours: Budget-Aware Adaptive MMR 带有宁缺毋滥机制
+                if best_gain <= 0:
+                    break
+            else:
+                # Baseline 2: Static MMR 没有熔断机制。
+                # 只要候选池还有合法的（能塞进 budget 的）代码块，
+                # 哪怕 best_gain 是负的，它也会硬着头皮选进去填满 2048。
+                pass 
 
             if best_idx != -1:
                 selected_indices.append(best_idx)
