@@ -15,7 +15,8 @@ from retriever import DenseRetriever
 # ==========================================
 # 1. Experiment Setup
 # ==========================================
-SAMPLE_SIZE = 400
+MAX_SAMPLES_NUMBER = 2665
+SAMPLE_SIZE = 10
 BUDGET = 2048
 RETRIEVER_MODEL_NAME = "codesage/codesage-small-v2"
 ALPHA = 1.0
@@ -23,6 +24,7 @@ BETA = 0.0
 GAMMA_STATIC = 0.5
 IF_STATIC_MMR = False
 POLLUTION_EXPERIMENT = True
+DATASET = "ZHENGRAN/cross_code_eval_python"
 
 # ==========================================
 # 0. Logging Setup
@@ -101,7 +103,7 @@ def run_batch_test():
     
     tokenizer = LenTokenizer()
     
-    ds = load_dataset("ZHENGRAN/cross_code_eval_python", split="train", streaming=True)
+    ds = load_dataset(DATASET, split="train", streaming=True)
     
     stats = {
         "topk_red": [], "static_red": [], "ours_red":[],

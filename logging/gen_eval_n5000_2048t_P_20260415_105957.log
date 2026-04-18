@@ -1,0 +1,10 @@
+2026-04-15 10:59:57 - INFO - Starting Generation Eval via OpenRouter (qwen/qwen2.5-coder-7b-instruct)
+2026-04-15 10:59:57 - INFO - Configuration: Samples=2665, Budget=2048, Pollution=True
+2026-04-16 02:13:03 - INFO - Raw generation log exported to: generation_results/generation_n2665_2048tokens_P_20260415_105957.jsonl
+2026-04-16 02:13:03 - INFO - ==================================================
+2026-04-16 02:13:03 - INFO -  END-TO-END GENERATION RESULTS (Exact Match)
+2026-04-16 02:13:03 - INFO - ==================================================
+2026-04-16 02:13:03 - INFO -   Context[TOPK]: 0.00% (0/2665)
+2026-04-16 02:13:03 - INFO -   Context[STATIC_MMR]: 0.00% (0/2665)
+2026-04-16 02:13:03 - INFO -   Context[OURS]: 0.00% (0/2665)
+2026-04-16 02:13:03 - INFO - ==================================================

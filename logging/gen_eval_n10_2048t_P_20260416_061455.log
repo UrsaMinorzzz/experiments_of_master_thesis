@@ -1,0 +1,2 @@
+2026-04-16 06:14:55 - INFO - Starting Generation Eval via OpenRouter (qwen/qwen2.5-coder-7b-instruct)
+2026-04-16 06:14:55 - INFO - Configuration: Samples=10, Budget=2048, Pollution=True
