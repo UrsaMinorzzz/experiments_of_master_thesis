@@ -9,6 +9,7 @@ venv/
 .venv/
 .venv*/
 .venv39/
+.thesis/
 __pycache__/
 
 

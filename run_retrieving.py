@@ -7,6 +7,7 @@ import numpy as np
 import torch
 from datasets import load_dataset
 from tqdm import tqdm
+from transformers.pytorch_utils import Conv1D
 
 # [Phase B] Imports
 from selector import BudgetAwareSelector
@@ -16,9 +17,9 @@ from retriever import DenseRetriever
 # 1. Experiment Setup
 # ==========================================
 MAX_SAMPLES_NUMBER = 2665
-SAMPLE_SIZE = 10
+SAMPLE_SIZE = MAX_SAMPLES_NUMBER
 BUDGET = 2048
-RETRIEVER_MODEL_NAME = "codesage/codesage-small-v2"
+RETRIEVER_MODEL_NAME = "jinaai/jina-code-embeddings-0.5b"
 ALPHA = 1.0
 BETA = 0.0
 GAMMA_STATIC = 0.5
