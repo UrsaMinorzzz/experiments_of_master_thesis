@@ -19,12 +19,12 @@ from retriever import DenseRetriever
 MAX_SAMPLES_NUMBER = 2665
 SAMPLE_SIZE = MAX_SAMPLES_NUMBER
 BUDGET = 2048
-RETRIEVER_MODEL_NAME = "jinaai/jina-code-embeddings-0.5b"
+RETRIEVER_MODEL_NAME = "codesage/codesage-small-v2"
 ALPHA = 1.0
 BETA = 0.0
 GAMMA_STATIC = 0.5
 IF_STATIC_MMR = False
-POLLUTION_EXPERIMENT = True
+POLLUTION_EXPERIMENT = False
 DATASET = "ZHENGRAN/cross_code_eval_python"
 
 # ==========================================

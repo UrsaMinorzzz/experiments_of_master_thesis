@@ -1,0 +1,21 @@
+2026-04-20 15:05:26 - INFO - Running Batch Experiment (Dense Retrieval) on 2665 samples...
+2026-04-20 15:05:26 - INFO - Configurations: Budget=2048, Pollution=False, Device=cuda
+2026-04-20 15:07:31 - INFO - Saved 2665 multi-context samples to data/eval_contexts_n2665_2048tokens_NP.jsonl
+2026-04-20 15:07:31 - INFO - ==================================================
+2026-04-20 15:07:31 - INFO -  EXPERIMENT RESULTS on n=2665 with 2048 tokens (No Pollution)
+2026-04-20 15:07:31 - INFO - ==================================================
+2026-04-20 15:07:31 - INFO - Redundancy (Lower is better):
+2026-04-20 15:07:31 - INFO -   [1] Naive Top-K:    0.0423
+2026-04-20 15:07:31 - INFO -   [2] Static MMR:     0.0423 (Impr vs Top-K: 0.01%)
+2026-04-20 15:07:31 - INFO -   [3] Ours (Dynamic): 0.0386 (Impr vs Top-K: 8.75%)
+2026-04-20 15:07:31 - INFO - ------------------------------
+2026-04-20 15:07:31 - INFO - Avg Item Count (Information Density):
+2026-04-20 15:07:31 - INFO -   [1] Naive Top-K:    4.82 chunks
+2026-04-20 15:07:31 - INFO -   [2] Static MMR:     4.82 chunks
+2026-04-20 15:07:31 - INFO -   [3] Ours (Dynamic): 4.72 chunks
+2026-04-20 15:07:31 - INFO - ------------------------------
+2026-04-20 15:07:31 - INFO - Avg Raw Cosine Score (Quality / Purity):
+2026-04-20 15:07:31 - INFO -   [1] Naive Top-K:    0.2407
+2026-04-20 15:07:31 - INFO -   [2] Static MMR:     0.2407
+2026-04-20 15:07:31 - INFO -   [3] Ours (Dynamic): 0.2443
+2026-04-20 15:07:31 - INFO - ==================================================
