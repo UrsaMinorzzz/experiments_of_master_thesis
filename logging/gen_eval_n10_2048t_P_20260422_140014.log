@@ -1,0 +1,4 @@
+2026-04-22 14:00:14 - INFO - Loading mlx-community/Qwen2.5-Coder-7B-Instruct-4bit into Apple Unified Memory...
+2026-04-22 14:02:57 - INFO - Model loaded in 163.04 seconds.
+2026-04-22 14:02:57 - INFO - Starting Generation Eval via Local MLX (mlx-community/Qwen2.5-Coder-7B-Instruct-4bit)
+2026-04-22 14:02:57 - INFO - Configuration: Samples=10, Budget=2048, Pollution=True
