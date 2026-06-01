@@ -1,0 +1,12 @@
+2026-06-01 18:37:53 - INFO - Loading mlx-community/Qwen2.5-Coder-7B-Instruct-4bit into Apple Unified Memory...
+2026-06-01 18:37:55 - INFO - Model loaded in 2.31 seconds.
+2026-06-01 18:37:55 - INFO - Starting Generation Eval via Local MLX (mlx-community/Qwen2.5-Coder-7B-Instruct-4bit)
+2026-06-01 18:37:55 - INFO - Configuration: Samples=10, Budget=2048, Pollution=True
+2026-06-01 18:45:45 - INFO - Raw generation log exported to: generation_results/generation_n10_2048tokens_P_20260601_183753.jsonl
+2026-06-01 18:45:45 - INFO - ==================================================
+2026-06-01 18:45:45 - INFO -  END-TO-END GENERATION RESULTS (Exact Match)
+2026-06-01 18:45:45 - INFO - ==================================================
+2026-06-01 18:45:45 - INFO -   Context[TOPK]: 0.00% (0/10)
+2026-06-01 18:45:45 - INFO -   Context[STATIC_MMR]: 0.00% (0/10)
+2026-06-01 18:45:45 - INFO -   Context[OURS]: 0.00% (0/10)
+2026-06-01 18:45:45 - INFO - ==================================================

@@ -1,0 +1,189 @@
+2026-06-01 19:01:26 - INFO - Loading mlx-community/Qwen2.5-Coder-7B-Instruct-4bit into Apple Unified Memory...
+2026-06-01 19:01:27 - INFO - Model loaded in 0.99 seconds.
+2026-06-01 19:01:27 - INFO - Starting Generation Eval via Local MLX (mlx-community/Qwen2.5-Coder-7B-Instruct-4bit)
+2026-06-01 19:01:27 - INFO - Configuration: Samples=10, Budget=2048, Pollution=True
+2026-06-01 19:01:44 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": ".decode(generator.sequence_ids[:, -generator.max_stop_tokens:])[0]"
+}
+```<|im_end|>
+...
+2026-06-01 19:02:05 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": ".decode(generator.sequence_ids[:, -generator.max_stop_tokens:])[0]\n        new_tail = tokenizer.decode(generator.sequence_ids[:, -(generator.max_stop_tokens + 1):])[0]\n        generator.held_text += new_tail[len(old_tail):]\n        # Hold text as long as it contains part of a stop string\n        partial_ss = False\n        for ss in generator.stop_strings:\n            # Check if held_text fully contains stop string\n            position = generator.held_text.find(ss)\n            if position != -1:\n                generator.sequence_str += generator.h...
+2026-06-01 19:02:22 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": "old_tail = tokenizer.decode(generator.sequence_ids[:, -generator.max_stop_tokens:])\n"
+}
+```<|im_end|>
+...
+2026-06-01 19:02:38 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": "gen_next_token(batch_token)"
+}
+```<|im_end|>
+...
+2026-06-01 19:02:55 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": "gen_add_token(batch_token)"
+}
+```<|im_end|>
+...
+2026-06-01 19:03:12 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": "gen_add_token(batch_token)"
+}
+```<|im_end|>
+...
+2026-06-01 19:03:25 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+  "completion": ".generate_simple(prompt, max_new_tokens=200)"
+}
+```<|im_end|>
+...
+2026-06-01 19:03:39 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+  "completion": ".generate_simple(prompt, max_new_tokens=200)"
+}
+```<|im_end|>
+...
+2026-06-01 19:03:51 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+  "completion": ".generate_simple(prompt, max_new_tokens=200)"
+}
+```<|im_end|>
+...
+2026-06-01 19:04:07 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": "full_prompt"
+}
+```<|im_end|>
+...
+2026-06-01 19:04:23 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": "full_prompt"
+}
+```<|im_end|>
+...
+2026-06-01 19:04:31 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": "decode(input_ids)[0]"
+}
+```<|im_end|>
+...
+2026-06-01 19:04:47 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": "gen_begin_reuse(prompt_ids, gen_settings)"
+}
+```<|im_end|>
+...
+2026-06-01 19:05:03 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": "gen_begin_reuse(prompt_ids, gen_settings)"
+}
+```<|im_end|>
+...
+2026-06-01 19:05:11 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": "gen_begin_reuse(prompt_ids, gen_settings)"
+}
+```<|im_end|>
+...
+2026-06-01 19:05:28 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": "ids, mask = tokenizer.encode(prompts[0])\n"
+}
+```<|im_end|>
+...
+2026-06-01 19:05:45 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": "ids, mask = tokenizer.encode(prompts[0])\n"
+}
+```<|im_end|>
+...
+2026-06-01 19:06:01 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": "ids, mask = tokenizer.encode(prompts[0])\n"
+}
+```<|im_end|>
+...
+2026-06-01 19:06:18 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": "decode(generator.sequence[:, 0])"
+}
+```<|im_end|>
+...
+2026-06-01 19:06:35 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": "decode(generator.sequence[:, 0])"
+}
+```<|im_end|>
+...
+2026-06-01 19:06:51 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": "decode(generator.sequence[:, 0])"
+}
+```<|im_end|>
+...
+2026-06-01 19:07:13 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": "config.theta_value = args.theta\n    return config"
+}
+```<|im_end|>
+...
+2026-06-01 19:07:34 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": "config.theta_value = args.theta\n    return config"
+}
+```<|im_end|>
+...
+2026-06-01 19:07:48 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": "config.theta_value = args.theta\n    return config"
+}
+```<|im_end|>
+...
+2026-06-01 19:08:05 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": ".generate_simple(line, max_new_tokens=200)\n    print(output[len(line):])"
+}
+```<|im_end|>
+...
+2026-06-01 19:08:21 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": ".generate_simple(line, max_new_tokens=200)\n    print(output[len(line):])"
+}
+```<|im_end|>
+...
+2026-06-01 19:08:31 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": ".generate_simple(line, max_new_tokens=200)\n    print(output[len(line):])\n"
+}
+```<|im_end|>
+...
+2026-06-01 19:08:53 - INFO - Raw LLM response for condition [TOPK]: ```json
+{
+    "completion": "config.alpha = args.alpha\n    config.theta = args.theta\n    return config"
+}
+```<|im_end|>
+...
+2026-06-01 19:09:16 - INFO - Raw LLM response for condition [STATIC_MMR]: ```json
+{
+    "completion": "config.alpha = args.alpha\n    config.theta = args.theta\n    return config"
+}
+```<|im_end|>
+...
+2026-06-01 19:09:30 - INFO - Raw LLM response for condition [OURS]: ```json
+{
+    "completion": "config.alpha = args.alpha\n    config.theta = args.theta\n    return config"
+}
+```<|im_end|>
+...
+2026-06-01 19:09:30 - INFO - Raw generation log exported to: generation_results/generation_n10_2048tokens_P_20260601_190126.jsonl
+2026-06-01 19:09:30 - INFO - ==================================================
+2026-06-01 19:09:30 - INFO -  END-TO-END GENERATION RESULTS (Exact Match)
+2026-06-01 19:09:30 - INFO - ==================================================
+2026-06-01 19:09:30 - INFO -   Context[TOPK]: 0.00% (0/10)
+2026-06-01 19:09:30 - INFO -   Context[STATIC_MMR]: 0.00% (0/10)
+2026-06-01 19:09:30 - INFO -   Context[OURS]: 0.00% (0/10)
+2026-06-01 19:09:30 - INFO - ==================================================

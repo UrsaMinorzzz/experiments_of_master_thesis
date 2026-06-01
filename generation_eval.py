@@ -108,20 +108,50 @@ def call_local_mlx(prompt: str) -> str:
         # temp=0.0,  # 0.0 即 Greedy Decoding，符合论文复现要求
         verbose=False     # 关闭终端逐字打印以保持进度条整洁
     )
+    return raw_content
+
+def parse_llm_response(raw_content: str) -> str:
+    # 1. 第一层清洗：切除所有已知的终止符和尾部空白
+    # 处理 <|im_end|> (Qwen), <|endoftext|> 等
+    raw_content = raw_content.replace("<|im_end|>", "").replace("<|endoftext|>", "").strip()
     
-    # 保留原有的 JSON 抢救解析逻辑
+    # 2. 第二层防御：尝试直接解析（最好情况，模型完全服从指令）
     try:
-        clean_json = raw_content.replace("```json", "").replace("```", "").strip()
-        result_dict = json.loads(clean_json)
-        return result_dict.get("completion", "")
+        return json.loads(raw_content).get("completion", "")
     except json.JSONDecodeError:
-        match = re.search(r'"completion"\s*:\s*"(.*)', raw_content, re.IGNORECASE | re.DOTALL)
-        if match:
-            salvaged = match.group(1)
-            salvaged = re.sub(r'"?\s*\}?\s*$', '', salvaged)
+        pass
+        
+    # 3. 第三层防御：安全提取 Markdown block
+    # 使用正则安全提取 ```json 和 ``` 之间的内容，而不是全局 replace
+    block_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', raw_content, re.IGNORECASE | re.DOTALL)
+    if block_match:
+        try:
+            return json.loads(block_match.group(1)).get("completion", "")
+        except json.JSONDecodeError:
+            pass
+            
+    # 4. 第四层防御：寻找最外层大括号（对付模型在 JSON 外面乱说废话）
+    start_idx = raw_content.find('{')
+    end_idx = raw_content.rfind('}')
+    if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
+        try:
+            return json.loads(raw_content[start_idx:end_idx+1]).get("completion", "")
+        except json.JSONDecodeError:
+            pass
+            
+    # 5. 终极兜底：精确正则提取，拒绝贪婪匹配
+    # (?:\\"|[^"])* 意为：匹配任何被转义的引号 \" 或者 非引号字符，防止越界吃到外面的大括号
+    match = re.search(r'"completion"\s*:\s*"((?:\\"|[^"])*)"', raw_content, re.IGNORECASE | re.DOTALL)
+    if match:
+        salvaged = match.group(1)
+        try:
+            # 巧用 json.loads 处理被截断字符串中的转义符（比如将 \n 还原为换行）
+            return json.loads(f'"{salvaged}"')
+        except json.JSONDecodeError:
             return salvaged
-        else:
-            return raw_content 
+            
+    # 如果走到这里，说明模型输出彻底崩溃，原样返回便于事后 Debug
+    return raw_content
 
 # ==========================================
 # 4. Main Evaluation Pipeline
@@ -164,7 +194,9 @@ def run_evaluation():
                 f"### JSON Output:\n"
             )
             
-            ans = call_local_mlx(prompt)
+            raw_llm_response = call_local_mlx(prompt)
+            logger.info(f"Raw LLM response for condition [{condition.upper()}]: {raw_llm_response}...")  # Log the first 100 chars
+            ans = parse_llm_response(raw_llm_response)
             score = exact_match_score(ans, gt)
             
             results[condition].append(score)
